@@ -1,15 +1,47 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import styled from 'styled-components';
 import NewRecipeForm from './NewRecipeForm.jsx';
+import RecipeDetails from './RecipeDetails.jsx';
 
-export default function Modal({ show, onClose }) {
-  if (!show) {
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+`;
+const ModalStyle = styled.div`
+  position: fixed;
+  width: 50vw;
+  height: 70vh;
+  overflow-y: hidden;
+  background: white;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+export default function Modal({ showAdd, showDetail, onClose, recipe }) {
+  let desiredView;
+  if (!showAdd && !showDetail) {
     return null;
+  }
+  if (showAdd) {
+    desiredView = <NewRecipeForm onClose={onClose} />;
+  } else {
+    desiredView = <RecipeDetails onClose={onClose} recipe={recipe} />;
   }
   return (
     ReactDOM.createPortal(
-      <NewRecipeForm onClose={onClose} />,
-      document.getElementById('add-modal-root'),
+      <>
+        <Overlay />
+        <ModalStyle>
+          {desiredView}
+        </ModalStyle>
+      </>,
+      document.getElementById('modal-root'),
     )
   );
 }
