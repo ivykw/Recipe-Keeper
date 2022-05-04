@@ -14,7 +14,7 @@ const Overlay = styled.div`
 `;
 const ModalStyle = styled.div`
   position: fixed;
-  width: 50vw;
+  width: 40vw;
   height: 70vh;
   overflow-y: hidden;
   background: white;
@@ -23,13 +23,13 @@ const ModalStyle = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-export default function Modal({ showAdd, showDetail, onClose, recipe }) {
+export default function Modal({ showAdd, showDetail, onClose, recipe, handleAdd }) {
   let desiredView;
   if (!showAdd && !showDetail) {
     return null;
   }
   if (showAdd) {
-    desiredView = <NewRecipeForm onClose={onClose} />;
+    desiredView = <NewRecipeForm onClose={onClose} handleAdd={handleAdd} />;
   } else {
     desiredView = <RecipeDetails onClose={onClose} recipe={recipe} />;
   }

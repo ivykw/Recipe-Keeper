@@ -6,13 +6,18 @@ const port = process.env.SERVERPORT;
 const db = require('../db/db');
 const controllers = require('../db/controllers/recipes');
 
+app.use(express.json());
+
+app.use(express.static('public'));
+
 app.get('/recipes', (req, res) => {
   // call controllers.getAll
-  res.send('hey!');
+  controllers.getAll(req, res);
 });
 
 app.post('/recipes', (req, res) => {
   // call controllers.addRecipe
+  controllers.addRecipe(req, res);
 });
 
 app.listen(port, () => {

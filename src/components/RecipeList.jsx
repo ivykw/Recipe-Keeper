@@ -6,10 +6,16 @@ import Card from './Card.jsx';
 const CardLayout = styled.div`
   display: flex;
   flex-direction: row
+  width: 100%;
+  height: 100%;
   overflow-y: hidden;
+  border: 2px solid black;
 `;
 
 export default function RecipeList({ list, handleCardClick }) {
+  if (list === null) {
+    return <div>Add recipes to your list!</div>;
+  }
   return (
     <CardLayout>
       {list.map((recipe) => (

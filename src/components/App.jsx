@@ -1,3 +1,4 @@
+/* eslint-disable react/sort-comp */
 /* eslint-disable import/extensions */
 import React from 'react';
 import styled from 'styled-components';
@@ -5,6 +6,8 @@ import Modal from './Modal.jsx';
 import RecipeList from './RecipeList.jsx';
 
 const axios = require('axios');
+
+const url = 'http://localhost:3000/recipes';
 
 const AppStyle = styled.div`
   display: grid;
@@ -47,10 +50,23 @@ class App extends React.Component {
     this.handleOpenAddModal = this.handleOpenAddModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleCardClick = this.handleCardClick.bind(this);
+    this.getAll = this.getAll.bind(this);
   }
 
-  handleAddButton(event, recipe) {
-    // handle post request for form data
+  handleAddButton(e, recipe) {
+    e.preventDefault();
+    axios.post(url, recipe, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
+    })
+      .then(() => {
+        this.getAll();
+      })
+      .catch((err) => {
+        console.log('Error posting recipe from client', err);
+      });
   }
 
   handleOpenAddModal() {
@@ -68,7 +84,23 @@ class App extends React.Component {
     e.preventDefault();
     this.setState({
       currentView: recipe,
-      showDetailModal: true });
+      showDetailModal: true,
+    });
+  }
+
+  // on mount, get all recipes
+  getAll() {
+    axios.get(url)
+      .then(({ data }) => {
+        this.setState({
+          allRecipes: data,
+        });
+      })
+      .catch((err) => { console.log('Error getting recipes from client', err); });
+  }
+
+  componentDidMount() {
+    this.getAll();
   }
 
   render() {
@@ -83,8 +115,9 @@ class App extends React.Component {
           showDetail={this.state.showDetailModal}
           onClose={this.handleCloseModal}
           recipe={this.state.currentView}
+          handleAdd={this.handleAddButton}
         />
-        <RecipeList list={testData} handleCardClick={this.handleCardClick} />
+        <RecipeList list={this.state.allRecipes} handleCardClick={this.handleCardClick} />
       </AppStyle>
     );
   }

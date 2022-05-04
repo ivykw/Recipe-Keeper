@@ -15,6 +15,7 @@ class NewRecipe extends React.Component {
       category: null,
       ingredients: null,
       instructions: null,
+      reference: null,
       photos: [],
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -30,9 +31,9 @@ class NewRecipe extends React.Component {
     });
   }
 
-  handleFormSubmit(event) {
+  handleFormSubmit(e) {
     event.preventDefault();
-    console.log(this.state);
+    this.props.handleAdd(e, this.state);
   }
 
   render() {
@@ -44,25 +45,31 @@ class NewRecipe extends React.Component {
             <div style={{ gridRow: '1' }}>
               <label>
                 Recipe Name:
-                <input type="text" name="name" onChange={this.handleInputChange} />
+                <input type="text" name="name" onChange={this.handleInputChange} required />
               </label>
             </div>
             <div style={{ gridRow: '2' }}>
               <label>
                 Category:
-                <input type="text" name="category" onChange={this.handleInputChange} />
+                <input type="text" name="category" onChange={this.handleInputChange} required />
               </label>
             </div>
             <div style={{ gridRow: '3' }}>
               <label>
                 Ingredients:
-                <textarea name="ingredients" onChange={this.handleInputChange} />
+                <textarea name="ingredients" onChange={this.handleInputChange} required />
               </label>
             </div>
             <div>
               <label>
                 Instructions:
-                <textarea name="instructions" onChange={this.handleInputChange} />
+                <textarea name="instructions" onChange={this.handleInputChange} required />
+              </label>
+            </div>
+            <div>
+              <label>
+                Reference:
+                <input type="text" name="reference" onChange={this.handleInputChange} />
               </label>
             </div>
             <div>
