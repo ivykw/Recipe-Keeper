@@ -5,11 +5,11 @@ import Card from './Card.jsx';
 
 const CardLayout = styled.div`
   display: flex;
-  flex-direction: row
-  width: 100%;
-  height: 100%;
-  overflow-y: hidden;
-  border: 2px solid black;
+  flex-direction: row;
+  width: 90%;
+  height: 80%;
+  position: relative;
+  background-color: white;
 `;
 
 export default function RecipeList({ list, handleCardClick }) {

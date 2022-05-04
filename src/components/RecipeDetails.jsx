@@ -1,7 +1,17 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
+import styled from 'styled-components';
 
-export default function RecipeDetails({ recipe, onClose }) {
+const RecipeDetailsStyle = styled.div`
+  color: #c72830;
+`;
+
+const SectionStyle = styled.div`
+  padding: 1em;
+`;
+
+export default function RecipeDetails({ recipe, onClose, handleDelete }) {
+
   const handleClick = (event) => {
     if (event.target.style.textDecoration) {
       event.target.style.removeProperty('text-decoration');
@@ -19,25 +29,32 @@ export default function RecipeDetails({ recipe, onClose }) {
     <li key={instruction} onClick={handleClick}>{instruction}</li>);
 
   return (
-    <>
+    <RecipeDetailsStyle>
       <button type="button" onClick={onClose}>X</button>
-      <div>
+      <SectionStyle>
         Recipe:
         {recipe.name}
-      </div>
-      <div>
+      </SectionStyle>
+      <SectionStyle>
         Category:
         {recipe.category}
-      </div>
-      <div>Ingredients</div>
+      </SectionStyle>
+      <SectionStyle>
+        Portions:
+        {recipe.portions}
+      </SectionStyle>
+      <SectionStyle>Ingredients</SectionStyle>
       <ul>{ingredients}</ul>
-      <div>Instructions</div>
+      <SectionStyle>Instructions</SectionStyle>
       <ol>{instructions}</ol>
-      <div>Photos</div>
-      <div>
-        Reference:
-        {recipe.reference}
-      </div>
-    </>
+      <SectionStyle>
+        Photos:
+        <img src={recipe.photos} alt={recipe.name} style={{ maxHeight: '7em', width: 'auto' }} />
+      </SectionStyle>
+      <SectionStyle>
+        <a href={recipe.reference}>Reference</a>
+      </SectionStyle>
+      <button type="button" onClick={(e) => handleDelete(e, recipe._id)}>Delete Recipe</button>
+    </RecipeDetailsStyle>
   );
 }

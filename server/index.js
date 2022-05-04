@@ -20,6 +20,10 @@ app.post('/recipes', (req, res) => {
   controllers.addRecipe(req, res);
 });
 
+app.delete('/recipes', (req, res) => {
+
+});
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });

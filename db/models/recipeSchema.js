@@ -11,6 +11,10 @@ const recipeSchema = new Schema({
     type: String,
     required: true,
   },
+  portions: {
+    type: String,
+    required: true,
+  },
   ingredients: {
     type: String,
     required: true,
@@ -20,7 +24,7 @@ const recipeSchema = new Schema({
     required: true,
   },
   reference: String,
-  photos: [String],
+  photos: String,
 });
 
 const Recipe = mongoose.model('Recipe', recipeSchema);
@@ -32,6 +36,7 @@ module.exports = {
     const newRecipe = new Recipe({
       name: recipe.name,
       category: recipe.category,
+      portions: recipe.portions,
       ingredients: recipe.ingredients,
       instructions: recipe.instructions,
       reference: recipe.reference,
@@ -40,18 +45,23 @@ module.exports = {
     newRecipe.save((err, added) => {
       if (err) {
         console.log(`Error saving ${added} to database`, err);
-      } else {
         callback(err);
+      } else {
+        callback();
       }
     });
   },
   getAll(callback) {
     // find all recipes
-    Recipe.find({}, '-_id', (err, docs) => {
+    Recipe.find({}, (err, docs) => {
       if (err) {
         console.log('Error retrieving recipes from database', err);
+        callback(err);
       }
       callback(err, docs);
     });
   },
+  deleteRecipe(recipeId, callback) {
+
+  }
 };

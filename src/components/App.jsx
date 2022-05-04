@@ -11,32 +11,46 @@ const url = 'http://localhost:3000/recipes';
 
 const AppStyle = styled.div`
   display: grid;
-  grid-template-rows: 2fr 1fr auto;
+  grid-template-rows: 1fr 1fr 8fr;
   justify-items: center;
-  width: 65vw
+  width: 75vw;
+  height: 100vh;
+  font-family: 'Work Sans', sans-serif;
+  background-color: #white;
+  border: 2px solid #3b3f20;
 `;
 const Banner = styled.h1`
-  grid-row: 1
+  color: #c72830;
+  font-weight: bolder;
 `;
 
 const NavBar = styled.div`
   display: flex;
-  flex-direction: row
+  flex-direction: row;
+  grid-row: 2;
 `;
 
-const testData = [
-  {
-    name: 'Chocolate Chip Cookies',
-    category: 'Dessert',
-    ingredients: 'test\ntesting is test\ntest',
-    instructions: 'test\ntesting is test\ntest',
-  },
-  {
-    name: 'test2',
-    ingredients: 'test\ntesting is test\ntest',
-    instructions: 'test\ntesting is test\ntest',
-  },
-];
+const AddNewButton = styled.button`
+  font-family: 'Work Sans', sans-serif;
+  cursor: pointer;
+  &:hover {
+    background-color: #c72830;
+  }
+  height: 3em;
+  color: #60504f;
+  background-color: #f5a7af;
+  border: 1px solid #c72830;
+`;
+
+const RecipeListStyle = styled.div`
+  grid-row: 3;
+  width: 90%;
+  border: 2px solid #c72830;
+  display: flex;
+  justify-content: center;
+  overflow-y: scroll;
+`;
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -47,6 +61,7 @@ class App extends React.Component {
       showDetailModal: false,
     };
     this.handleAddButton = this.handleAddButton.bind(this);
+    this.handleDeleteButton = this.handleDeleteButton.bind(this);
     this.handleOpenAddModal = this.handleOpenAddModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleCardClick = this.handleCardClick.bind(this);
@@ -67,6 +82,18 @@ class App extends React.Component {
       .catch((err) => {
         console.log('Error posting recipe from client', err);
       });
+  }
+
+  handleDeleteButton(e, recipeId) {
+    e.preventDefault();
+    console.log(recipeId)
+    // axios.delete(url, { data: { recipeId } })
+    //   .then(() => {
+    //     this.getAll();
+    //   })
+    //   .catch((err) => {
+    //     console.log('Error deleting recipe from client', err);
+    //   });
   }
 
   handleOpenAddModal() {
@@ -108,7 +135,7 @@ class App extends React.Component {
       <AppStyle>
         <Banner>My Recipe Collection</Banner>
         <NavBar>
-          <button type="button" onClick={this.handleOpenAddModal}>Add New Recipe</button>
+          <AddNewButton type="button" onClick={this.handleOpenAddModal}>Add New Recipe</AddNewButton>
         </NavBar>
         <Modal
           showAdd={this.state.showAddModal}
@@ -116,8 +143,11 @@ class App extends React.Component {
           onClose={this.handleCloseModal}
           recipe={this.state.currentView}
           handleAdd={this.handleAddButton}
+          handleDelete={this.handleDeleteButton}
         />
-        <RecipeList list={this.state.allRecipes} handleCardClick={this.handleCardClick} />
+        <RecipeListStyle>
+          <RecipeList list={this.state.allRecipes} handleCardClick={this.handleCardClick} />
+        </RecipeListStyle>
       </AppStyle>
     );
   }

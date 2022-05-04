@@ -7,6 +7,7 @@ import App from './components/App.jsx';
 const PageStyle = styled.div`
   display: grid;
   justify-items: center;
+  background-color: white;
 `;
 
 const root = createRoot(document.getElementById('root'));

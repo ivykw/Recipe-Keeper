@@ -3,8 +3,30 @@ import React from 'react';
 import styled from 'styled-components';
 
 const FormStyle = styled.div`
-  display: grid;
-  grid-template-rows: 1fr 1fr 3fr 3fr 1fr 1fr;
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
+`;
+
+const FormTitle = styled.h2`
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+`;
+
+const InputStyle = styled.div`
+  padding: 1%;
+`;
+
+const TextareaStyle = styled.textarea`
+  height: 20em;
+  width: 80%;
+`;
+
+const ButtonStyle = styled.button`
+  font-family: 'Work Sans', sans-serif;
+  position: relative;
+  left: 50%;
 `;
 
 class NewRecipe extends React.Component {
@@ -13,10 +35,11 @@ class NewRecipe extends React.Component {
     this.state = {
       name: null,
       category: null,
+      portions: null,
       ingredients: null,
       instructions: null,
       reference: null,
-      photos: [],
+      photos: null,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -32,52 +55,63 @@ class NewRecipe extends React.Component {
   }
 
   handleFormSubmit(e) {
-    event.preventDefault();
+    e.preventDefault();
     this.props.handleAdd(e, this.state);
+    this.props.onClose();
   }
 
   render() {
     return (
       <>
         <button type="button" onClick={this.props.onClose}>X</button>
+        <FormTitle>Add Recipe</FormTitle>
         <FormStyle>
           <form onSubmit={this.handleFormSubmit}>
-            <div style={{ gridRow: '1' }}>
+            <InputStyle style={{ gridRow: '1' }}>
               <label>
-                Recipe Name:
+                <div>Recipe Name:</div>
                 <input type="text" name="name" onChange={this.handleInputChange} required />
               </label>
-            </div>
-            <div style={{ gridRow: '2' }}>
+            </InputStyle>
+            <InputStyle style={{ gridRow: '2' }}>
               <label>
-                Category:
+                <div>Category:</div>
                 <input type="text" name="category" onChange={this.handleInputChange} required />
               </label>
-            </div>
-            <div style={{ gridRow: '3' }}>
+            </InputStyle>
+            <InputStyle style={{ gridRow: '2' }}>
               <label>
-                Ingredients:
-                <textarea name="ingredients" onChange={this.handleInputChange} required />
+                <div>Portions:</div>
+                <input type="text" name="portions" onChange={this.handleInputChange} required />
               </label>
-            </div>
-            <div>
+            </InputStyle>
+            <InputStyle style={{ gridRow: '3' }}>
               <label>
-                Instructions:
-                <textarea name="instructions" onChange={this.handleInputChange} required />
+                <div>Ingredients:</div>
+                <TextareaStyle name="ingredients" onChange={this.handleInputChange} required />
               </label>
-            </div>
-            <div>
+            </InputStyle>
+            <InputStyle>
               <label>
-                Reference:
+                <div>Instructions:</div>
+                <TextareaStyle name="instructions" onChange={this.handleInputChange} required />
+              </label>
+            </InputStyle>
+            <InputStyle>
+              <label>
+                <div>Reference:</div>
                 <input type="text" name="reference" onChange={this.handleInputChange} />
               </label>
-            </div>
-            <div>
-              <button type="button">Add Photos</button>
-            </div>
-            <div>
-              <button type="submit">Add Recipe</button>
-            </div>
+            </InputStyle>
+            <InputStyle>
+              <label>
+                <div>Photo URL:</div>
+                <input type="text" name="photos" onChange={this.handleInputChange} />
+              </label>
+            </InputStyle>
+            <InputStyle>
+              <ButtonStyle type="submit">Add Recipe</ButtonStyle>
+            </InputStyle>
           </form>
         </FormStyle>
       </>
