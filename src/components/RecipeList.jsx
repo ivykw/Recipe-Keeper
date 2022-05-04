@@ -2,15 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 // eslint-disable-next-line import/extensions
 import Card from './Card.jsx';
-
-const CardLayout = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 90%;
-  height: 80%;
-  position: relative;
-  background-color: white;
-`;
+import { CardLayout } from './Styles.js';
 
 export default function RecipeList({ list, handleCardClick }) {
   if (list === null) {

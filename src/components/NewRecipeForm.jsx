@@ -1,33 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
-import styled from 'styled-components';
-
-const FormStyle = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 1%;
-`;
-
-const FormTitle = styled.h2`
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-`;
-
-const InputStyle = styled.div`
-  padding: 1%;
-`;
-
-const TextareaStyle = styled.textarea`
-  height: 20em;
-  width: 80%;
-`;
-
-const ButtonStyle = styled.button`
-  font-family: 'Work Sans', sans-serif;
-  position: relative;
-  left: 50%;
-`;
+import { FormStyle, FormTitle, InputStyle, TextareaStyle, MainButton, ExitButton } from './Styles.js';
 
 class NewRecipe extends React.Component {
   constructor(props) {
@@ -63,7 +36,7 @@ class NewRecipe extends React.Component {
   render() {
     return (
       <>
-        <button type="button" onClick={this.props.onClose}>X</button>
+        <ExitButton type="button" onClick={this.props.onClose}>X</ExitButton>
         <FormTitle>Add Recipe</FormTitle>
         <FormStyle>
           <form onSubmit={this.handleFormSubmit}>
@@ -110,7 +83,7 @@ class NewRecipe extends React.Component {
               </label>
             </InputStyle>
             <InputStyle>
-              <ButtonStyle type="submit">Add Recipe</ButtonStyle>
+              <MainButton type="submit">Add Recipe</MainButton>
             </InputStyle>
           </form>
         </FormStyle>

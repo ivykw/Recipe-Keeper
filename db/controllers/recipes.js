@@ -23,8 +23,7 @@ module.exports = {
     });
   },
   deleteRecipe(req, res) {
-    console.log(req.data)
-    recipe.deleteRecipe(req.data, (err) => {
+    recipe.deleteRecipe(req.body.recipeId, (err) => {
       if (err) {
         console.log('Error deleting recipe from server', err);
         res.sendStatus(500);

@@ -62,6 +62,12 @@ module.exports = {
     });
   },
   deleteRecipe(recipeId, callback) {
-
-  }
+    Recipe.deleteOne({ _id: recipeId }, (err, docs) => {
+      if (err) {
+        console.log('Error deleting recipe from database', err);
+        callback(err);
+      }
+      callback();
+    });
+  },
 };

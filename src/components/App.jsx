@@ -4,52 +4,12 @@ import React from 'react';
 import styled from 'styled-components';
 import Modal from './Modal.jsx';
 import RecipeList from './RecipeList.jsx';
+import Search from './Search.jsx';
+import { AppStyle, Banner, NavBar, MainButton, RecipeListStyle } from './Styles.js';
 
 const axios = require('axios');
 
 const url = 'http://localhost:3000/recipes';
-
-const AppStyle = styled.div`
-  display: grid;
-  grid-template-rows: 1fr 1fr 8fr;
-  justify-items: center;
-  width: 75vw;
-  height: 100vh;
-  font-family: 'Work Sans', sans-serif;
-  background-color: #white;
-  border: 2px solid #3b3f20;
-`;
-const Banner = styled.h1`
-  color: #c72830;
-  font-weight: bolder;
-`;
-
-const NavBar = styled.div`
-  display: flex;
-  flex-direction: row;
-  grid-row: 2;
-`;
-
-const AddNewButton = styled.button`
-  font-family: 'Work Sans', sans-serif;
-  cursor: pointer;
-  &:hover {
-    background-color: #c72830;
-  }
-  height: 3em;
-  color: #60504f;
-  background-color: #f5a7af;
-  border: 1px solid #c72830;
-`;
-
-const RecipeListStyle = styled.div`
-  grid-row: 3;
-  width: 90%;
-  border: 2px solid #c72830;
-  display: flex;
-  justify-content: center;
-  overflow-y: scroll;
-`;
 
 class App extends React.Component {
   constructor(props) {
@@ -59,13 +19,26 @@ class App extends React.Component {
       currentView: null,
       showAddModal: false,
       showDetailModal: false,
+      searched: null,
     };
     this.handleAddButton = this.handleAddButton.bind(this);
     this.handleDeleteButton = this.handleDeleteButton.bind(this);
     this.handleOpenAddModal = this.handleOpenAddModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleCardClick = this.handleCardClick.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
     this.getAll = this.getAll.bind(this);
+  }
+
+  // on mount, get all recipes
+  getAll() {
+    axios.get(url)
+      .then(({ data }) => {
+        this.setState({
+          allRecipes: data,
+        });
+      })
+      .catch((err) => { console.log('Error getting recipes from client', err); });
   }
 
   handleAddButton(e, recipe) {
@@ -85,15 +58,14 @@ class App extends React.Component {
   }
 
   handleDeleteButton(e, recipeId) {
-    e.preventDefault();
-    console.log(recipeId)
-    // axios.delete(url, { data: { recipeId } })
-    //   .then(() => {
-    //     this.getAll();
-    //   })
-    //   .catch((err) => {
-    //     console.log('Error deleting recipe from client', err);
-    //   });
+    this.handleCloseModal();
+    axios.delete(url, { data: { recipeId } })
+      .then(() => {
+        this.getAll();
+      })
+      .catch((err) => {
+        console.log('Error deleting recipe from client', err);
+      });
   }
 
   handleOpenAddModal() {
@@ -115,15 +87,23 @@ class App extends React.Component {
     });
   }
 
-  // on mount, get all recipes
-  getAll() {
-    axios.get(url)
-      .then(({ data }) => {
-        this.setState({
-          allRecipes: data,
-        });
-      })
-      .catch((err) => { console.log('Error getting recipes from client', err); });
+  handleSearch(e, search) {
+    e.preventDefault();
+    let found = [];
+    let recipes = this.state.allRecipes;
+    // iterate over all recipes
+    for (let i = 0; i < recipes.length; i++) {
+      // if they contain search
+      if (recipes[i].name.toLowerCase().includes(search)) {
+        found.push(recipes[i]);
+      }
+    }
+    // push into array
+    if (found.length > 0) {
+      this.setState({
+        searched: found,
+      });
+    }
   }
 
   componentDidMount() {
@@ -131,11 +111,19 @@ class App extends React.Component {
   }
 
   render() {
+    let currentList;
+    if (this.state.searched !== null) {
+      currentList = this.state.searched;
+    } else {
+      currentList = this.state.allRecipes;
+    }
     return (
       <AppStyle>
         <Banner>My Recipe Collection</Banner>
         <NavBar>
-          <AddNewButton type="button" onClick={this.handleOpenAddModal}>Add New Recipe</AddNewButton>
+          <MainButton type="button" onClick={() => {this.setState({ searched: null })}}>All Recipes</MainButton>
+          <MainButton type="button" onClick={this.handleOpenAddModal}>Add New Recipe</MainButton>
+          <Search handleSearch={this.handleSearch} />
         </NavBar>
         <Modal
           showAdd={this.state.showAddModal}
@@ -146,7 +134,7 @@ class App extends React.Component {
           handleDelete={this.handleDeleteButton}
         />
         <RecipeListStyle>
-          <RecipeList list={this.state.allRecipes} handleCardClick={this.handleCardClick} />
+          <RecipeList list={currentList} handleCardClick={this.handleCardClick} />
         </RecipeListStyle>
       </AppStyle>
     );

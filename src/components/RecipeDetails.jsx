@@ -1,17 +1,9 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import styled from 'styled-components';
-
-const RecipeDetailsStyle = styled.div`
-  color: #c72830;
-`;
-
-const SectionStyle = styled.div`
-  padding: 1em;
-`;
+import { RecipeDetailsStyle, SectionStyle, ExitButton, MainButton } from './Styles.js';
 
 export default function RecipeDetails({ recipe, onClose, handleDelete }) {
-
   const handleClick = (event) => {
     if (event.target.style.textDecoration) {
       event.target.style.removeProperty('text-decoration');
@@ -30,7 +22,7 @@ export default function RecipeDetails({ recipe, onClose, handleDelete }) {
 
   return (
     <RecipeDetailsStyle>
-      <button type="button" onClick={onClose}>X</button>
+      <ExitButton type="button" onClick={onClose}>X</ExitButton>
       <SectionStyle>
         Recipe:
         {recipe.name}
@@ -54,7 +46,7 @@ export default function RecipeDetails({ recipe, onClose, handleDelete }) {
       <SectionStyle>
         <a href={recipe.reference}>Reference</a>
       </SectionStyle>
-      <button type="button" onClick={(e) => handleDelete(e, recipe._id)}>Delete Recipe</button>
+      <MainButton type="button" onClick={(e) => handleDelete(e, recipe._id)}>Delete Recipe</MainButton>
     </RecipeDetailsStyle>
   );
 }

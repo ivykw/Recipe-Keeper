@@ -21,7 +21,7 @@ app.post('/recipes', (req, res) => {
 });
 
 app.delete('/recipes', (req, res) => {
-
+  controllers.deleteRecipe(req, res);
 });
 
 app.listen(port, () => {
