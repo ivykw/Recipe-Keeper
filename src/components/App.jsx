@@ -146,7 +146,7 @@ class App extends React.Component {
         <NavBar>
           <MainButton type="button" onClick={() => {this.setState({ searched: null, selected: null })}}>All Recipes</MainButton>
           <MainButton type="button" onClick={this.handleOpenAddModal}>Add New Recipe</MainButton>
-          <label style={{ color: '#c72830' }}>
+          <label style={{ color: '#60504f' }}>
             View By Category:
             <Category categories={this.state.categories} handleSelected={this.handleSelected} />
           </label>

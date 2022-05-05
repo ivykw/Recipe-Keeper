@@ -1,0 +1,5 @@
+# URI for your database, eg. 'mongodb://127.0.0.1:27017/recipes' for local host.
+MONGODB_URI=
+
+# Port for your express server to run on.
+SERVERPORT=

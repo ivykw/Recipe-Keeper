@@ -25,14 +25,17 @@ export default function RecipeDetails({ recipe, onClose, handleDelete }) {
       <ExitButton type="button" onClick={onClose}>X</ExitButton>
       <SectionStyle>
         Recipe:
+        <span> </span>
         {recipe.name}
       </SectionStyle>
       <SectionStyle>
         Category:
+        <span> </span>
         {recipe.category}
       </SectionStyle>
       <SectionStyle>
         Portions:
+        <span> </span>
         {recipe.portions}
       </SectionStyle>
       <SectionStyle>Ingredients</SectionStyle>
@@ -41,12 +44,13 @@ export default function RecipeDetails({ recipe, onClose, handleDelete }) {
       <ol>{instructions}</ol>
       <SectionStyle>
         Photos:
+        <span> </span>
         <img src={recipe.photos} alt={recipe.name} style={{ maxHeight: '7em', width: 'auto' }} />
       </SectionStyle>
       <SectionStyle>
         <a href={recipe.reference}>Reference</a>
       </SectionStyle>
-      <MainButton style={{ position: 'relative', left: '45%'}} type="button" onClick={(e) => handleDelete(e, recipe._id)}>Delete Recipe</MainButton>
+      <MainButton style={{ position: 'relative', left: '45%', bottom: '5%' }} type="button" onClick={(e) => handleDelete(e, recipe._id)}>Delete Recipe</MainButton>
     </RecipeDetailsStyle>
   );
 }

@@ -11,7 +11,7 @@ const AppStyle = styled.div`
   background-color: white;
 `;
 const Banner = styled.h1`
-  color: #c72830;
+  color: #60504f;
 `;
 
 const NavBar = styled.div`
@@ -25,12 +25,12 @@ const MainButton = styled.button`
   font-family: 'Work Sans', sans-serif;
   cursor: pointer;
   &:hover {
-    background-color: #c72830;
+    background-color: #33855d;
   }
   height: 50%;
   width: 20%;
   color: #60504f;
-  background-color: #f5a7af;
+  background-color: #c7f8e0;
   border: 1px solid #60504f;
 `;
 
@@ -41,6 +41,7 @@ const RecipeListStyle = styled.div`
   display: flex;
   justify-content: center;
   overflow-y: auto;
+  background-color: #c7f8e0;
 `;
 
 // Styles for Modal.jsx
@@ -62,7 +63,7 @@ const ModalStyle = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   font-family: 'Work Sans', sans-serif;
-  border: 2px solid #c72830;
+  border: 2px solid #60504f;
 `;
 
 // Styles for RecipeList.jsx
@@ -75,7 +76,7 @@ const CardLayout = styled.div`
   width: 90%;
   height: 80%;
   position: relative;
-  background-color: white;
+  background-color: #c7f8e0;
   gap: 5%;
   flex-wrap: wrap;
 `;
@@ -83,7 +84,7 @@ const CardLayout = styled.div`
 // Styles for Card.jsx
 const CardStyle = styled.div`
   border: 1px solid #60504f;
-  height: 35%;
+  height: 40%;
   width: 25%;
   max-width: 25%;
   padding: 0;
@@ -94,9 +95,10 @@ const CardStyle = styled.div`
   justify-content: center;
   text-align: center;
   cursor: pointer;
-  background-color: #f5a7af;
-  color: #c72830;
+  background-color: white;
+  color: #60504f;
   overflow: hidden;
+  flex-wrap: nowrap;
 `;
 
 const ImageStyle = styled.img`
@@ -116,7 +118,7 @@ const NameStyle = styled.div`
 
 // Styles for RecipeDetails.jsx
 const RecipeDetailsStyle = styled.div`
-  color: #c72830;
+  color: #60504f;
 `;
 
 const SectionStyle = styled.div`
@@ -134,12 +136,12 @@ const FormTitle = styled.h2`
   font-weight: bold;
   display: flex;
   justify-content: center;
-  color: #c72830;
+  color: #60504f;
 `;
 
 const InputStyle = styled.div`
   padding: 1%;
-  color: #c72830;
+  color: #60504f;
 `;
 
 const TextareaStyle = styled.textarea`
@@ -148,7 +150,7 @@ const TextareaStyle = styled.textarea`
 `;
 
 const ExitButton = styled.button`
-  color: #c72830;
+  color: #60504f;
   position: fixed;
   right: 0;
   top: 2px;

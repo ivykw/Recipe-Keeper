@@ -9,11 +9,16 @@ export default function Search({ handleSearch }) {
     setInput(searched);
   };
 
+  const handleSubmit = (e) => {
+    handleSearch(e, input);
+    setInput('');
+  };
+
   return (
-    <SearchBar onSubmit={(e) => handleSearch(e, input)}>
-      <label style={{color: '#c72830'}}>
+    <SearchBar onSubmit={(e) => handleSubmit(e)}>
+      <label style={{color: '#60504f'}}>
         Search:
-        <input type="text" onChange={handleInput} />
+        <input type="text" onChange={handleInput} value={input} />
       </label>
       <MainButton type="submit">Go!</MainButton>
     </SearchBar>
