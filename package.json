@@ -6,6 +6,8 @@
   "scripts": {
     "server-dev": "nodemon ./server/index.js",
     "client-dev": "webpack --mode=development --watch",
+    "server-prod": "node ./server/index.js",
+    "client-prod": "webpack --mode=production",
     "build": "webpack --mode=production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

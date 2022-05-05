@@ -1,5 +1,7 @@
+# Make a copy of this named .env and fill out the necessary details.
+
 # URI for your database, eg. 'mongodb://127.0.0.1:27017/recipes' for local host.
 MONGODB_URI=
 
-# Port for your express server to run on.
+# Port for your express server to run on. If this is set to something other than 3000, you will need to change the url in './src/components/App.jsx'.
 SERVERPORT=
