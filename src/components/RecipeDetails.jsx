@@ -46,7 +46,7 @@ export default function RecipeDetails({ recipe, onClose, handleDelete }) {
       <SectionStyle>
         <a href={recipe.reference}>Reference</a>
       </SectionStyle>
-      <MainButton type="button" onClick={(e) => handleDelete(e, recipe._id)}>Delete Recipe</MainButton>
+      <MainButton style={{ position: 'relative', left: '45%'}} type="button" onClick={(e) => handleDelete(e, recipe._id)}>Delete Recipe</MainButton>
     </RecipeDetailsStyle>
   );
 }

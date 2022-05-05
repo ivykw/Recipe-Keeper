@@ -83,7 +83,7 @@ class NewRecipe extends React.Component {
               </label>
             </InputStyle>
             <InputStyle>
-              <MainButton type="submit">Add Recipe</MainButton>
+              <MainButton style={{ position: 'relative', left: '45%'}} type="submit">Add Recipe</MainButton>
             </InputStyle>
           </form>
         </FormStyle>

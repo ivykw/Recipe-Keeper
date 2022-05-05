@@ -17,7 +17,8 @@ export default function Category({ categories, handleSelected }) {
   };
 
   return (
-    <select value="Category" style={{height: '40%'}} onChange={handleChoice}>
+    <select value="Category" style={{height: '30%'}} onChange={handleChoice}>
+      <option defaultValue="none" disabled hidden>Category</option>
       {options}
     </select>
   );

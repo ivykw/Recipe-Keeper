@@ -9,11 +9,9 @@ const AppStyle = styled.div`
   height: 100vh;
   font-family: 'Work Sans', sans-serif;
   background-color: white;
-  border: 2px solid #60504f;
 `;
 const Banner = styled.h1`
   color: #c72830;
-  font-weight: bolder;
 `;
 
 const NavBar = styled.div`
