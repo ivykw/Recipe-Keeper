@@ -79,6 +79,7 @@ const CardLayout = styled.div`
   position: relative;
   background-color: white;
   gap: 5%;
+  flex-wrap: wrap;
 `;
 
 // Styles for Card.jsx
@@ -156,6 +157,13 @@ const ExitButton = styled.button`
   font-family: 'Work Sans', sans-serif;
 `;
 
+// Search Bar Styles
+const SearchBar = styled.form`
+display: flex;
+flex-direction: row;
+gap: 2px;
+`;
+
 export {
   AppStyle, Banner, NavBar, MainButton, RecipeListStyle,
 };
@@ -166,3 +174,4 @@ export { RecipeDetailsStyle, SectionStyle };
 export {
   FormStyle, FormTitle, InputStyle, TextareaStyle, ExitButton,
 };
+export { SearchBar };

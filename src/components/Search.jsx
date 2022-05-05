@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { MainButton } from './Styles.js';
+import { MainButton, SearchBar } from './Styles.js';
 
 export default function Search({ handleSearch }) {
   const [input, setInput] = useState('');
@@ -8,12 +8,6 @@ export default function Search({ handleSearch }) {
     let searched = e.target.value.toLowerCase();
     setInput(searched);
   };
-
-  const SearchBar = styled.form`
-    display: flex;
-    flex-direction: row;
-    gap: 2px;
-  `;
 
   return (
     <SearchBar onSubmit={(e) => handleSearch(e, input)}>
