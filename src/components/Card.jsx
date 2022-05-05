@@ -1,6 +1,6 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import styled from 'styled-components';
-import { CardStyle, ImageStyle, NameStyle } from './Styles.js';
+import { CardStyle, ImageStyle, NameStyle } from './Styles';
 
 export default function Card({ recipe, handleCardClick }) {
   let image;

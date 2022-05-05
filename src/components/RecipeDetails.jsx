@@ -1,7 +1,11 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable react/prop-types */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
-import styled from 'styled-components';
-import { RecipeDetailsStyle, SectionStyle, ExitButton, MainButton } from './Styles.js';
+import {
+  RecipeDetailsStyle, SectionStyle, ExitButton, MainButton,
+} from './Styles';
 
 export default function RecipeDetails({ recipe, onClose, handleDelete }) {
   const handleClick = (event) => {
@@ -13,12 +17,12 @@ export default function RecipeDetails({ recipe, onClose, handleDelete }) {
   };
 
   const ingredientsArray = recipe.ingredients.split('\n');
-  const ingredients = ingredientsArray.map((ingredient) =>
-    <li key={ingredient} onClick={handleClick}>{ingredient}</li>);
+  const ingredients = ingredientsArray.map((ingredient) => (
+    <li key={ingredient} onClick={handleClick}>{ingredient}</li>));
 
   const instructionArray = recipe.instructions.split('\n');
-  const instructions = instructionArray.map((instruction) =>
-    <li key={instruction} onClick={handleClick}>{instruction}</li>);
+  const instructions = instructionArray.map((instruction) => (
+    <li key={instruction} onClick={handleClick}>{instruction}</li>));
 
   return (
     <RecipeDetailsStyle>

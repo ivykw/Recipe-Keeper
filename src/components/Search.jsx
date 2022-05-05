@@ -1,11 +1,12 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import { MainButton, SearchBar } from './Styles.js';
+import { MainButton, SearchBar } from './Styles';
 
 export default function Search({ handleSearch }) {
   const [input, setInput] = useState('');
   const handleInput = (e) => {
-    let searched = e.target.value.toLowerCase();
+    const searched = e.target.value.toLowerCase();
     setInput(searched);
   };
 
@@ -16,7 +17,7 @@ export default function Search({ handleSearch }) {
 
   return (
     <SearchBar onSubmit={(e) => handleSubmit(e)}>
-      <label style={{color: '#60504f'}}>
+      <label style={{ color: '#60504f' }}>
         Search:
         <input type="text" onChange={handleInput} value={input} />
       </label>

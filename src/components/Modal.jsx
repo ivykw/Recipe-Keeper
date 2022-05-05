@@ -1,11 +1,14 @@
+/* eslint-disable no-undef */
+/* eslint-disable import/extensions */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import styled from 'styled-components';
 import NewRecipeForm from './NewRecipeForm.jsx';
 import RecipeDetails from './RecipeDetails.jsx';
 import { Overlay, ModalStyle } from './Styles.js';
 
-export default function Modal({ showAdd, showDetail, onClose, recipe, handleAdd, handleDelete }) {
+export default function Modal({
+  showAdd, showDetail, onClose, recipe, handleAdd, handleDelete,
+}) {
   let desiredView;
   if (!showAdd && !showDetail) {
     return null;

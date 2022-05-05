@@ -1,12 +1,16 @@
-/* eslint-disable react/sort-comp */
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable import/extensions */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/sort-comp */
+
 import React from 'react';
-import styled from 'styled-components';
 import Modal from './Modal.jsx';
 import RecipeList from './RecipeList.jsx';
 import Search from './Search.jsx';
 import Category from './Category.jsx';
-import { AppStyle, Banner, NavBar, MainButton, RecipeListStyle } from './Styles.js';
+import {
+  AppStyle, Banner, NavBar, MainButton, RecipeListStyle,
+} from './Styles';
 
 const axios = require('axios');
 
@@ -34,12 +38,11 @@ class App extends React.Component {
     this.getAll = this.getAll.bind(this);
   }
 
-  // on mount, get all recipes
   getAll() {
     axios.get(url)
       .then(({ data }) => {
-        let categories = {};
-        for (let i = 0; i < data.length; i++) {
+        const categories = {};
+        for (let i = 0; i < data.length; i += 1) {
           const currentCategory = data[i].category;
           categories[currentCategory] = true;
         }
@@ -99,9 +102,9 @@ class App extends React.Component {
 
   handleSearch(e, search) {
     e.preventDefault();
-    let found = [];
-    let recipes = this.state.allRecipes;
-    for (let i = 0; i < recipes.length; i++) {
+    const found = [];
+    const recipes = this.state.allRecipes;
+    for (let i = 0; i < recipes.length; i += 1) {
       if (recipes[i].name.toLowerCase().includes(search)) {
         found.push(recipes[i]);
       }
@@ -114,10 +117,9 @@ class App extends React.Component {
   }
 
   handleSelected(category) {
-    console.log(category)
-    let selected = [];
-    let recipes = this.state.allRecipes;
-    for (let i = 0; i < recipes.length; i++) {
+    const selected = [];
+    const recipes = this.state.allRecipes;
+    for (let i = 0; i < recipes.length; i += 1) {
       if (recipes[i].category === category) {
         selected.push(recipes[i]);
       }
@@ -144,7 +146,7 @@ class App extends React.Component {
       <AppStyle>
         <Banner>My Recipe Collection</Banner>
         <NavBar>
-          <MainButton type="button" onClick={() => {this.setState({ searched: null, selected: null })}}>All Recipes</MainButton>
+          <MainButton type="button" onClick={() => { this.setState({ searched: null, selected: null }); }}>All Recipes</MainButton>
           <MainButton type="button" onClick={this.handleOpenAddModal}>Add New Recipe</MainButton>
           <label style={{ color: '#60504f' }}>
             View By Category:
