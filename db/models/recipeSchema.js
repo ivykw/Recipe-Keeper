@@ -29,10 +29,8 @@ const recipeSchema = new Schema({
 
 const Recipe = mongoose.model('Recipe', recipeSchema);
 
-// should write functions dealing with data here
 module.exports = {
   addRecipe(recipe, callback) {
-    // make new recipe
     const newRecipe = new Recipe({
       name: recipe.name,
       category: recipe.category,
@@ -52,7 +50,6 @@ module.exports = {
     });
   },
   getAll(callback) {
-    // find all recipes
     Recipe.find({}, (err, docs) => {
       if (err) {
         console.log('Error retrieving recipes from database', err);

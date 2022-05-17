@@ -2,9 +2,15 @@
 Do you have ~9999 bookmarks of different recipes to sift through every time you want to re-make a recipe you made from the internet? Hate having to watch a youtube video every time to make that one recipe everyone liked? Well look no further, this is your solution!
 
 Welcome to the one-stop-shop for your curated recipes, the Recipe-Keeper!
+![Main Overview](/ReadMeDocs/MainOverview.PNG)
 
 With the Recipe-Keeper, you can easily transfer over the ingredients and instructions from an online recipe to your own app for your perusal by simply copy and pasting the list of ingredients and instructions. You can make tweaks to the recipe as you upload it, so you don't have to browse the comments for those helpful tips every time you want those delicious lemon bars. With ability to sort by category and search by name, it'll be a breeze to find the recipe you want. In the recipe details view, you can click on ingredients and instructions to strike-through on ones you've already added/completed!
 
+- Adding and using a recipe:
+![Adding Recipe](/ReadMeDocs/AddingRecipe.gif)
+
+- Sorting and searching recipes:
+![Sorting and Searching Recipes](/ReadMeDocs/SortAndSearch.gif)
 
 ## Getting Started
 1. From a terminal, clone from [this repo](https://github.com/ivykw/Recipe-Keeper)
@@ -47,7 +53,7 @@ npm run server-prod
 ![css](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 [![style: styled-components](https://img.shields.io/badge/style-%F0%9F%92%85%20styled--components-orange.svg?colorB=daa357&colorA=db748e)](https://github.com/styled-components/styled-components)
 
- Back End
+- Back End
 ![Axios](https://img.shields.io/badge/Axios-HTTP%20Requests-orange)
 ![node](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
 ![express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
