@@ -24,12 +24,15 @@ class App extends React.Component {
       currentView: null,
       showAddModal: false,
       showDetailModal: false,
+      showEditModal: false,
       searched: null,
       categories: null,
       selected: null,
     };
     this.handleAddButton = this.handleAddButton.bind(this);
     this.handleDeleteButton = this.handleDeleteButton.bind(this);
+    this.handleEditButton = this.handleEditButton.bind(this);
+    this.handleEditSubmit = this.handleEditSubmit.bind(this);
     this.handleOpenAddModal = this.handleOpenAddModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleCardClick = this.handleCardClick.bind(this);
@@ -81,6 +84,20 @@ class App extends React.Component {
       });
   }
 
+  handleEditButton(e, recipe) {
+    e.preventDefault();
+    this.setState({
+      showDetailModal: false,
+      currentView: recipe,
+      showEditModal: true,
+    });
+  }
+
+  handleEditSubmit(e, recipe) {
+    e.preventDefault();
+    console.log(recipe)
+  }
+
   handleOpenAddModal() {
     this.setState({ showAddModal: true });
   }
@@ -89,6 +106,7 @@ class App extends React.Component {
     this.setState({
       showAddModal: false,
       showDetailModal: false,
+      showEditModal: false,
     });
   }
 
@@ -157,10 +175,13 @@ class App extends React.Component {
         <Modal
           showAdd={this.state.showAddModal}
           showDetail={this.state.showDetailModal}
+          showEdit={this.state.showEditModal}
           onClose={this.handleCloseModal}
           recipe={this.state.currentView}
           handleAdd={this.handleAddButton}
           handleDelete={this.handleDeleteButton}
+          handleEdit={this.handleEditButton}
+          handleEditSubmit={this.handleEditSubmit}
         />
         <RecipeListStyle>
           <RecipeList list={currentList} handleCardClick={this.handleCardClick} />
