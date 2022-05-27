@@ -3,11 +3,12 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
+import Modal from './Modal.jsx';
 import {
   RecipeDetailsStyle, SectionStyle, ExitButton, MainButton,
 } from './Styles';
 
-export default function RecipeDetails({ recipe, onClose, handleDelete }) {
+export default function RecipeDetails({ recipe, onClose, handleDelete, handleEdit }) {
   const handleClick = (event) => {
     if (event.target.style.textDecoration) {
       event.target.style.removeProperty('text-decoration');
@@ -54,6 +55,7 @@ export default function RecipeDetails({ recipe, onClose, handleDelete }) {
       <SectionStyle>
         <a href={recipe.reference}>Reference</a>
       </SectionStyle>
+      <MainButton style={{ position: 'relative', left: '45%', bottom: '5%' }} type="button" onClick={(e) => handleEdit(e, recipe)}>Edit Recipe</MainButton>
       <MainButton style={{ position: 'relative', left: '45%', bottom: '5%' }} type="button" onClick={(e) => handleDelete(e, recipe._id)}>Delete Recipe</MainButton>
     </RecipeDetailsStyle>
   );
