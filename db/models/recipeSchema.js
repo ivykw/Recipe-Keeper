@@ -51,10 +51,6 @@ module.exports = {
   },
   getAll(callback) {
     Recipe.find({}, (err, docs) => {
-      if (err) {
-        console.log('Error retrieving recipes from database', err);
-        callback(err);
-      }
       callback(err, docs);
     });
   },
@@ -65,6 +61,23 @@ module.exports = {
         callback(err);
       }
       callback();
+    });
+  },
+  editRecipe(recipe, callback) {
+    const filter = { _id: recipe.id };
+    const update = {
+      name: recipe.name,
+      category: recipe.category,
+      portions: recipe.portions,
+      ingredients: recipe.ingredients,
+      instructions: recipe.instructions,
+      reference: recipe.reference,
+      photos: recipe.photos,
+    };
+    Recipe.findOneAndUpdate(filter, update, {
+      new: true,
+    }, (err, doc) => {
+      callback(err, doc);
     });
   },
 };
