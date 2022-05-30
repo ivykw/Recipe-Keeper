@@ -96,6 +96,24 @@ class App extends React.Component {
   handleEditSubmit(e, recipe) {
     e.preventDefault();
     console.log(recipe)
+    axios.put(url, recipe)
+      .then(({ data }) => {
+        const { allRecipes } = this.state;
+        for (let i = 0; i < allRecipes.length; i += 1) {
+          const current = allRecipes[i];
+          if (current._id === data._id) {
+            allRecipes.splice(i, 1, recipe);
+            break;
+          }
+        }
+        const { categories } = this.state;
+        categories[data.category] = true;
+        this.setState({
+          allRecipes,
+          categories,
+        });
+      })
+      .catch((err) => { console.log('Error updating with edited recipe', err); });
   }
 
   handleOpenAddModal() {

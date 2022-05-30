@@ -29,4 +29,13 @@ module.exports = {
       res.sendStatus(204);
     });
   },
+  editRecipe(req, res) {
+    recipe.editRecipe(req.body, (err, data) => {
+      if (err) {
+        console.log('Error editing recipe', err);
+        res.sendStatus(500);
+      }
+      res.status(200).send(data);
+    });
+  },
 };

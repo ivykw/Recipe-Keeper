@@ -23,6 +23,10 @@ app.delete('/recipes', (req, res) => {
   controllers.deleteRecipe(req, res);
 });
 
+app.put('/recipes', (req, res) => {
+  controllers.editRecipe(req, res);
+});
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });

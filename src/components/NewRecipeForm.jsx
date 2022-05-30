@@ -6,13 +6,14 @@ class NewRecipe extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: this.props.recipe.name || null,
-      category: this.props.recipe.category || null,
-      portions: this.props.recipe.portions || null,
-      ingredients: this.props.recipe.ingredients || null,
-      instructions: this.props.recipe.instructions || null,
-      reference: this.props.recipe.reference || null,
-      photos: this.props.recipe.photos || null,
+      id: this.props.recipe?._id || '',
+      name: this.props.recipe?.name || '',
+      category: this.props.recipe?.category || '',
+      portions: this.props.recipe?.portions || '',
+      ingredients: this.props.recipe?.ingredients || '',
+      instructions: this.props.recipe?.instructions || '',
+      reference: this.props.recipe?.reference || '',
+      photos: this.props.recipe?.photos || '',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
